@@ -4,6 +4,7 @@ import logo from '../logo.svg';
 import { bindActionCreators } from 'redux';
 import '../App.css';
 import * as simpleActions from '../actions/simpleAction';
+import * as userActions from '../actions/userAction';
 class App extends Component {
 
     constructor(props,context) {
@@ -13,6 +14,7 @@ class App extends Component {
     simpleAction = (event) => {
         this.props.actions.loadText();
         this.props.actions.SecondloadText('enviado desde el component');
+        this.props.actionsUser.loginUser('oscaravilaperilla@hotmail.com','123456');
     }
 
     render() {
@@ -40,7 +42,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 function mapDispatchToProps (dispatch) {
     return {
-        actions: bindActionCreators(simpleActions, dispatch)
+        actions: bindActionCreators(simpleActions, dispatch),
+        actionsUser: bindActionCreators(userActions, dispatch),
     };
 }
 
