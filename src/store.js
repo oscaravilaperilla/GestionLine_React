@@ -20,7 +20,7 @@ firebase.initializeApp(firebaseConfig);
 export default function configureStore(initialState = {}) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(rootReducer, initialState, composeEnhancers(
-    applyMiddleware(loadingBarMiddleware(),thunk, promiseMiddleware(),
+    applyMiddleware(thunk, promiseMiddleware(),loadingBarMiddleware(),
     )));
   return store;
 }
