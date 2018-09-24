@@ -1,17 +1,24 @@
+import UserApi from '../api/UserApi';
 import firebase from 'firebase';
 
-export function loginUser(email, pass) { 
-   return  dispatch => {
-    firebase.auth().signInWithEmailAndPassword(email, pass)
-        .then((resp) => {
-            return dispatch(loginUserSuccess(resp));
-        })
-        .catch((error) => { dispatch(loginUserFail)});
+export function loginUser(email, pass) {
+    return async  dispatch => {
+        let user = await UserApi.signInWithEmailAndPassword(email, pass);
+        dispatch(loginUserSuccess(user));
     }
 }
 
-
-
+ export function verifyAuth() {
+    return function (dispatch) {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                dispatch(loginUserSuccess(user));
+            } else {
+                dispatch(loginUserFail());
+            }
+        });
+    }
+}
 
 export const loginUserSuccess = (resp) => {
     return {

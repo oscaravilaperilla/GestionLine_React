@@ -17,6 +17,7 @@ class App extends Component {
         this.props.actionsUser.loginUser('oscaravilaperilla@hotmail.com','123456');
     }
 
+
     render() {
         return (
             <div className="App">
@@ -38,6 +39,7 @@ class App extends Component {
 const mapStateToProps = (state, ownProps) => ({
     text: state.simpleReducer.result || 'Initial',
     text2: state.simpleReducer.text || 'Initial 2',
+    user: state.simpleReducer.user,
 })
 
 function mapDispatchToProps (dispatch) {

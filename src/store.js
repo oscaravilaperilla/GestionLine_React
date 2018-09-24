@@ -2,7 +2,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import firebase from 'firebase';
 
 // Firebase config
@@ -15,6 +14,9 @@ const firebaseConfig = {
     messagingSenderId: "1016214655529"
   }
   firebase.initializeApp(firebaseConfig);
+  
+
+
 
 
 
@@ -24,10 +26,19 @@ export default function configureStore(initialState={}) {
 
  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||  compose;
     
- return  createStore(rootReducer, initialState, composeEnhancers(
-     applyMiddleware(thunk, reduxImmutableStateInvariant(), 
+
+ //reduxImmutableStateInvariant({
+    //ignore: [
+        //'firebase'
+      //]
+    //}),
+ const store =   createStore(rootReducer, initialState, composeEnhancers(
+     applyMiddleware(thunk,
  )));
 
 
+ 
+
+return store;
 
 }
