@@ -3,7 +3,9 @@
 */
 import { combineReducers } from 'redux';
 import simpleReducer from './simpleReducer';
+import { loadingBarReducer } from 'react-redux-loading-bar';
 
 export default combineReducers({
- simpleReducer
+ simpleReducer,
+ loadingBar: loadingBarReducer,
 });

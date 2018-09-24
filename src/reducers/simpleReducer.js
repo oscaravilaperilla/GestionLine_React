@@ -22,6 +22,11 @@ export default (state = initialState, action) => {
         text : action.payload
       });
 
+      case 'LOGIN_USER_FULFILLED':
+      return Object.assign({}, state, {
+        user : action.payload
+      });
+
       case 'LOGIN_USER_SUCCESS':
       return Object.assign({}, state, {
         user : action.payload

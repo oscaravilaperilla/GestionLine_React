@@ -4,7 +4,10 @@ import logo from '../logo.svg';
 import { bindActionCreators } from 'redux';
 import '../App.css';
 import * as simpleActions from '../actions/simpleAction';
+import {Link} from 'react-router-dom';
 import * as userActions from '../actions/userAction';
+import LoadingBar from 'react-redux-loading-bar'
+
 class App extends Component {
 
     constructor(props,context) {
@@ -14,7 +17,7 @@ class App extends Component {
     simpleAction = (event) => {
         this.props.actions.loadText();
         this.props.actions.SecondloadText('enviado desde el component');
-        this.props.actionsUser.loginUser('oscaravilaperilla@hotmail.com','123456');
+        this.props.actionsUser.login('oscaravilaperilla@hotmail.com','123456');
     }
 
 
@@ -24,6 +27,7 @@ class App extends Component {
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Welcome to React</h1>
+                    
                 </header>
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload
@@ -31,6 +35,10 @@ class App extends Component {
                 <button onClick={this.simpleAction}>Test redux action</button>
                 <p>{this.props.text}</p>
                 <p>{this.props.text2}</p>
+                <Link to="/about">
+                    <button>Go to About</button>
+                </Link>
+                <LoadingBar />
             </div>
         );
     }
