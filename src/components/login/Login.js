@@ -1,6 +1,10 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import * as userActions from '../../actions/userAction';
+import { Redirect } from 'react-router-dom';
+
 import "../../styles/login.css";
 
 
@@ -13,8 +17,24 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      reditect : false
     };
+    this.signIn = this.signIn.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user) {
+         this.setState({
+          redirect: true
+        })
+
+    }
+  }
+
+  signIn = (event) => {
+    this.props.actions.signInWithEmailAndPassword('oscaravilaperilla@hotmail.com', '123456');
+
   }
 
   validateForm() {
@@ -32,7 +52,13 @@ class Login extends Component {
   }
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    if (this.state.redirect) {
+      return <Redirect to={from} />;
+    }
+
     return (
+      
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
@@ -57,6 +83,7 @@ class Login extends Component {
             bsSize="large"
             disabled={!this.validateForm()}
             type="submit"
+            onClick={this.signIn}
           >
             Login
           </Button>
@@ -71,15 +98,13 @@ class Login extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    prop: state.prop
+    user: state.user.currentUser,
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    dispatch1: () => {
-      
-    }
+    actions: bindActionCreators(userActions, dispatch),
   }
 }
 

@@ -17,7 +17,7 @@ class App extends Component {
     simpleAction = (event) => {
         this.props.actions.loadText();
         this.props.actions.SecondloadText('enviado desde el component');
-        this.props.actionsUser.login('oscaravilaperilla@hotmail.com','123456');
+        this.props.actionsUser.signInWithEmailAndPassword('oscaravilaperilla@hotmail.com','123456');
     }
 
 
