@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 const ProtectedRoute
     = ({ isAllowed, ...props }) =>
     {
-        console.log(props);
         return(    
         isAllowed
             ? <Route {...props} />

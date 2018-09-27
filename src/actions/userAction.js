@@ -7,8 +7,7 @@ import firebase from 'firebase';
 export const signInWithEmailAndPassword = (email, pass) => ({
     type: types.LOGIN_USER,
     async payload() {
-        let user = UserApi.signInWithEmailAndPassword(email, pass);
-
+        let user = await  UserApi.signInWithEmailAndPassword(email, pass);
         return user;
     },
 })
