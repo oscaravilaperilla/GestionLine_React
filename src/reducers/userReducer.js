@@ -12,6 +12,10 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         currentUser: action.payload
       });
+    case 'LOGOUT_USER_FULFILLED':
+      return Object.assign({}, state, {
+        currentUser: null
+      });
     default:
       return state
   }

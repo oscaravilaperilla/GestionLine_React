@@ -12,6 +12,23 @@ export const signInWithEmailAndPassword = (email, pass) => ({
     },
 })
 
+export const signOut = () => ({
+    type: types.LOGOUT_USER,
+    async payload() {
+        let user = await  UserApi.signOut();
+        verifyAuth();
+    },
+})
+
+export const updateUser = () => ({
+    type: types.UPDATE_USER,
+    async payload() {
+        let user = await  UserApi.updateUser();
+        return user;
+    },
+})
+
+
 export const loginUserSuccess = (user) => ({
     type: types.LOGIN_USER_FULFILLED,
     payload: user

@@ -7,7 +7,7 @@ import * as simpleActions from '../actions/simpleAction';
 import { Link } from 'react-router-dom';
 import * as userActions from '../actions/userAction';
 import LoadingBar from 'react-redux-loading-bar';
-import NavBarApp from '../containers/NavBar';
+
 
 class App extends Component {
 
@@ -18,7 +18,7 @@ class App extends Component {
     simpleAction = (event) => {
         this.props.actions.loadText();
         this.props.actions.SecondloadText('enviado desde el component');
-        this.props.actionsUser.signInWithEmailAndPassword('oscaravilaperilla@hotmail.com', '123456');
+        this.props.actionsUser.updateUser();
     }
 
 
@@ -30,7 +30,7 @@ class App extends Component {
                     {/* <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Welcome to React</h1>
                      */}
-                     <NavBarApp></NavBarApp>
+                     
                     
                 </header>
                 
