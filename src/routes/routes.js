@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import App from '../components/App';
 import About from '../containers/About';
 import Login from '../components/login/Login';
+import UpdateData from '../components/UpdateProfile/UpdateData';
 import ProtectedRoute from './protectedRoute';
 import NavBarApp from '../components/Navigation/NavBar';
 import SideBar from '../components/Navigation/sideBar';
@@ -20,7 +21,9 @@ const AppRoutes = ({isAllowed, ...props}) => {
                     <Route path='/login' component={Login} />
                     <ProtectedRoute isAllowed={isAllowed} path='/about' component={About} />
                     <ProtectedRoute isAllowed={isAllowed} exact path='/' component={App} />
+                    <ProtectedRoute isAllowed={isAllowed} path='/updatedata' component={UpdateData} />
                     <ProtectedRoute isAllowed={isAllowed} path="/" component={App} />
+                    
                 </Switch>
             </div>
         </BrowserRouter>

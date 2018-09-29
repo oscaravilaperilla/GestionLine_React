@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import UpdateData from '../components/UpdateProfile/UpdateData';
 export default class About extends React.Component {
  render () {
    return (
@@ -8,6 +9,7 @@ export default class About extends React.Component {
        <Link to="/">
         <button>Go Home</button>
        </Link>
+       <UpdateData></UpdateData>
      </div>
    )
  }

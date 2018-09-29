@@ -21,14 +21,7 @@ class Login extends Component {
     this.signIn = this.signIn.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user) {
-         this.setState({
-          redirect: true
-        })
 
-    }
-  }
 
   signIn = (event) => {
     this.props.actions.signInWithEmailAndPassword(this.state.email, this.state.password);
@@ -51,7 +44,7 @@ class Login extends Component {
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: "/" } };
-    if (this.state.redirect) {
+    if (this.props.user) {
       return <Redirect to={from} />;
     }
 

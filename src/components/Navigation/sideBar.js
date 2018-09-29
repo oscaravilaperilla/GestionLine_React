@@ -7,7 +7,7 @@ import UserInfo from '../login/UserInfo';
 
 const sideBar = (props) => {
     return (
-        <Menu >
+        <Menu right>
             <UserInfo/>
             <Link to='/' >
                 <span className="menu-item">
@@ -18,6 +18,11 @@ const sideBar = (props) => {
             <Link to='/about' >
                 <span className="menu-item">
                     About
+                </span>
+            </Link>
+            <Link to='/updatedata' >
+                <span className="menu-item">
+                    Update Profile
                 </span>
             </Link>
         </Menu>
