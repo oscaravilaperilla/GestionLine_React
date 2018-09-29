@@ -28,6 +28,14 @@ export const updateUser = () => ({
     },
 })
 
+export const queryEmployee = (uid) => ({
+    type: types.QUERY_EMPLOYEE,
+    async payload() {
+        let employee = await  UserApi.queryEmployee(uid);
+        return employee;
+    },
+})
+
 
 export const loginUserSuccess = (user) => ({
     type: types.LOGIN_USER_FULFILLED,
@@ -43,3 +51,4 @@ export function verifyAuth() {
         });
     }
 }
+

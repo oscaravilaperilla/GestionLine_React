@@ -16,8 +16,7 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: "",
-      reditect : false
+      password: ""
     };
     this.signIn = this.signIn.bind(this);
   }
@@ -32,7 +31,7 @@ class Login extends Component {
   }
 
   signIn = (event) => {
-    this.props.actions.signInWithEmailAndPassword('oscaravilaperilla@hotmail.com', '123456');
+    this.props.actions.signInWithEmailAndPassword(this.state.email, this.state.password);
 
   }
 

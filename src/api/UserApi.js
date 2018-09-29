@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 class UserApi {
-
+    
     static async signInWithEmailAndPassword(email, pass) {
         try {
             let userProperties = await firebase.auth().signInWithEmailAndPassword(email, pass);
@@ -11,7 +11,6 @@ class UserApi {
             console.log(e);
         }
     }
-
     static async updateUser() {
         try {
             let user = firebase.auth().currentUser;
@@ -28,6 +27,15 @@ class UserApi {
     
     static signOut(){
         firebase.auth().signOut();
+    }
+
+     static async queryEmployee(uid){
+        let db = firebase.firestore();
+        let employeesref = db.collection("employees").doc(uid);
+        let doc = await employeesref.get();
+        return doc.data();
+            
+        
     }
 
     //

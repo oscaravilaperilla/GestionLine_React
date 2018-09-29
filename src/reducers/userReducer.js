@@ -3,7 +3,8 @@
 */
 
 const initialState = {
-  currentUser: null
+  currentUser: null,
+  employee: null,
 };
 
 export default (state = initialState, action) => {
@@ -15,6 +16,10 @@ export default (state = initialState, action) => {
     case 'LOGOUT_USER_FULFILLED':
       return Object.assign({}, state, {
         currentUser: null
+      });
+    case 'QUERY_EMPLOYEE_FULFILLED':
+      return Object.assign({}, state, {
+        employee: action.payload
       });
     default:
       return state

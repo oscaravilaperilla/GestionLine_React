@@ -13,7 +13,8 @@ const firebaseConfig = {
   databaseURL: "https://employees-86ecc.firebaseio.com",
   projectId: "employees-86ecc",
   storageBucket: "employees-86ecc.appspot.com",
-  messagingSenderId: "1016214655529"
+  messagingSenderId: "1016214655529",
+  timestampsInSnapshots: true
 }
 firebase.initializeApp(firebaseConfig);
 

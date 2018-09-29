@@ -17,10 +17,5 @@ const ProtectedRoute
             
     }
 
-function mapStateToProps(state) {
-    return {
-        isAllowed: state.user.currentUser,
-    };
-}
 
-export default connect(mapStateToProps)(ProtectedRoute);
+export default ProtectedRoute;

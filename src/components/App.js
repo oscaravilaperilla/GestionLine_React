@@ -18,7 +18,7 @@ class App extends Component {
     simpleAction = (event) => {
         this.props.actions.loadText();
         this.props.actions.SecondloadText('enviado desde el component');
-        this.props.actionsUser.updateUser();
+        this.props.actionsUser.queryEmployee(this.props.user.uid);
     }
 
 
@@ -53,7 +53,7 @@ class App extends Component {
 const mapStateToProps = (state, ownProps) => ({
     text: state.simpleReducer.result || 'Initial',
     text2: state.simpleReducer.text || 'Initial 2',
-    user: state.simpleReducer.user,
+    user: state.user.currentUser,
 })
 
 function mapDispatchToProps(dispatch) {
