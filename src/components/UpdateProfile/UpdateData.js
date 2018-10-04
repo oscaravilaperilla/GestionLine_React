@@ -9,7 +9,7 @@ class UpdateData extends Component {
     render() {
         return (
              this.props.Employee ? 
-            <Profile Employee = {this.props.Employee}/> : null
+            <Profile Employee = {this.props.Employee} user = {this.props.user} /> : null
         );
     }
 

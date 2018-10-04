@@ -33,7 +33,11 @@ class UserApi {
         let db = firebase.firestore();
         let employeesref = db.collection("employees").doc(uid);
         let doc = await employeesref.get();
+        let t = await doc.data().estructura.get();
+        console.log(t.parent);
+        console.log(t.data());
         return doc.data();
+        
             
         
     }
