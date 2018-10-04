@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import moment from 'moment'
 
 class UserApi {
     
@@ -31,12 +32,17 @@ class UserApi {
 
      static async queryEmployee(uid){
         let db = firebase.firestore();
+        const settings = {timestampsInSnapshots: true};
+        db.settings(settings);
         let employeesref = db.collection("employees").doc(uid);
         let doc = await employeesref.get();
-        let t = await doc.data().estructura.get();
-        console.log(t.parent);
-        console.log(t.data());
-        return doc.data();
+        //let t = await doc.data().estructuraRef.get();
+        //console.log(t.parent);
+        //console.log(t.data());
+        let t =  doc.data();
+        t.position.dateLastPosition = moment(t.position.dateLastPosition.toDate()).format('DD/MM/YYYY');
+        t.admissionDate = moment(t.admissionDate.toDate()).format('DD/MM/YYYY');
+        return t;
         
             
         
