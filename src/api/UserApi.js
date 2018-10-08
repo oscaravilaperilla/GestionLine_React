@@ -39,7 +39,9 @@ class UserApi {
         //let t = await doc.data().estructuraRef.get();
         //console.log(t.parent);
         //console.log(t.data());
+        console.log(doc.id);
         let t =  doc.data();
+
         t.position.dateLastPosition = moment(t.position.dateLastPosition.toDate()).format('DD/MM/YYYY');
         t.admissionDate = moment(t.admissionDate.toDate()).format('DD/MM/YYYY');
         return t;

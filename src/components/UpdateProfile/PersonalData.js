@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Image } from 'react-bootstrap';
+import SearchEmployees from '../common/SearchEmployees';
+import { searchEmployees } from '../../actions/commonActions';
 const PersonalData = ({ Employee, user, ...props }) => {
     return (
         <div className="container-fluid">
@@ -134,6 +136,7 @@ const PersonalData = ({ Employee, user, ...props }) => {
                                 <div className="row">
                                     <label className="col-sm-4 col-form-label text-left">Jefe</label>
                                     <div className="col-sm-8">
+                                        <SearchEmployees/>
                                         <input className="form-control form-control-sm" value={Employee.chief.description} type="text" placeholder="Readonly input here…" readOnly></input>
                                     </div>
                                 </div>
