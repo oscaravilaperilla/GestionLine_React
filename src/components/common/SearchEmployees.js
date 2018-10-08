@@ -42,7 +42,7 @@ class SearchEmployees extends Component {
 
   }
 
-  componentDidUpdate(prevProps, prevState) {
+/*   componentDidUpdate(prevProps, prevState) {
     if (prevProps.employees !== this.props.employees) {
 
       this.setState({
@@ -52,7 +52,7 @@ class SearchEmployees extends Component {
     }
 
 
-  }
+  } */
 
 
 
