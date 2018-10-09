@@ -18,10 +18,10 @@ class SearchEmployees extends Component {
       <div>
         <AsyncTypeahead
           {...this.state}
-          labelKey="busqueda"
+          labelKey="name"
           minLength={3}
           onSearch={this._handleSearch}
-          placeholder="Search for a Github user..."
+          placeholder="Search for a new Chief"
           renderMenuItemChildren={(option, props) => (
             <EmployeeItem key={option.identificacion} employee={option} />
           )}

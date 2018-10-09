@@ -3,15 +3,15 @@ import React from 'react';
 const EmployeeItem = ({employee}) => (
   <div>
     <img
-      alt={employee.active}
-      src={employee.name}
+      alt={employee.name}
+      src={employee.photoUrl}
       style={{
         height: '24px',
         marginRight: '10px',
         width: '24px',
       }}
     />
-    <span>{employee.lastName}</span>
+    <span>{employee.name + ' ' + employee.lastName}</span>
   </div>
 );
 

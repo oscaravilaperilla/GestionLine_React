@@ -8,7 +8,7 @@ class commonApi {
             let db = firebase.firestore();
             const settings = { timestampsInSnapshots: true };
             db.settings(settings);
-            let employeesByName = db.collection("employees").where("busqueda", "==", name);
+            let employeesByName = db.collection("employees");
             let employees = await employeesByName.get();
             let x = 1;
             console.log(x);
