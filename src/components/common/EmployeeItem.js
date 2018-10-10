@@ -11,7 +11,7 @@ const EmployeeItem = ({employee}) => (
         width: '24px',
       }}
     />
-    <span>{employee.name + ' ' + employee.lastName}</span>
+    <span>{employee.fullName}</span>
   </div>
 );
 

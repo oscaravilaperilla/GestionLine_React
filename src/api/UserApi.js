@@ -25,6 +25,23 @@ class UserApi {
             console.log(e);
         }
     }
+
+    static async updateProfile(id,profile) {
+        try {
+            let db = firebase.firestore();
+            const settings = {timestampsInSnapshots: true};
+            db.settings(settings);
+            let doc = db.collection("employees").doc(id);
+
+            await doc.update( { ['chief.description'] : profile.fullName, ['chief.id'] : profile.id } )
+            return this.queryEmployee(id);
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
+
     
     static signOut(){
         firebase.auth().signOut();
@@ -41,13 +58,10 @@ class UserApi {
         //console.log(t.data());
         console.log(doc.id);
         let t =  doc.data();
-
+        t.id = doc.id;
         t.position.dateLastPosition = moment(t.position.dateLastPosition.toDate()).format('DD/MM/YYYY');
         t.admissionDate = moment(t.admissionDate.toDate()).format('DD/MM/YYYY');
         return t;
-        
-            
-        
     }
 
     //

@@ -10,3 +10,9 @@ export const searchEmployees = (name) => ({
     },
 })
 
+
+
+export const selectSearchEmployee = (employee) => ({
+    type: types.SELECT_SEARCH_EMPLOYEE,
+    payload: employee
+})

@@ -12,9 +12,14 @@ class commonApi {
             let employees = await employeesByName.get();
             let x = 1;
             console.log(x);
-            return employees.docs.map((doc,i) => 
-                doc.data()
-            ) ;
+            return employees.docs.map((doc, i) => {
+                return  {
+                    id: doc.id,
+                    fullName: doc.data().fullName,
+                    photoUrl: doc.data().photoUrl,
+                }
+            }
+            );
         }
         catch (e) {
             console.log(e);

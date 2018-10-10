@@ -21,6 +21,12 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         employee: action.payload
       });
+      case 'CHANGE_CHIEF_FULFILLED':
+      return Object.assign({}, state, {
+        employee: action.payload
+      });
+
+
     default:
       return state
   }

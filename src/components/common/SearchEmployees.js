@@ -18,7 +18,11 @@ class SearchEmployees extends Component {
       <div>
         <AsyncTypeahead
           {...this.state}
-          labelKey="name"
+          onChange={(selected) => {
+            this.props.actions.selectSearchEmployee(selected[0
+            ]);
+          }}
+          labelKey="fullName"
           minLength={3}
           onSearch={this._handleSearch}
           placeholder="Search for a new Chief"
@@ -27,7 +31,6 @@ class SearchEmployees extends Component {
           )}
         />
       </div>
-
     );
   }
 
@@ -41,20 +44,6 @@ class SearchEmployees extends Component {
     return null;
 
   }
-
-/*   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.employees !== this.props.employees) {
-
-      this.setState({
-        isLoading: false,
-        options: this.props.employees
-      });
-    }
-
-
-  } */
-
-
 
   _handleSearch = (query) => {
     this.setState({ isLoading: true });

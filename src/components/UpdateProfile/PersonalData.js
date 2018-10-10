@@ -3,7 +3,7 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Image } from 'react-bootstrap';
 import SearchEmployees from '../common/SearchEmployees';
 import { searchEmployees } from '../../actions/commonActions';
-const PersonalData = ({ Employee, user, cambiarJefe,changeChief, ...props }) => {
+const PersonalData = ({ Employee, user, cambiarJefe,changeChief,cancelChangeChief,setChangeChief, ...props }) => {
     return (
         <div className="container-fluid">
             <div className="row">
@@ -136,14 +136,14 @@ const PersonalData = ({ Employee, user, cambiarJefe,changeChief, ...props }) => 
                                 <div className="row">
                                     <label className="col-sm-4 col-form-label text-left">Jefe</label>
                                     <div className="col-sm-8">
-                                        { (cambiarJefe) ? <SearchEmployees/> : null}
+                                        { (cambiarJefe) ? <SearchEmployees selectedEmployee={changeChief} /> : null}
                                         { (!cambiarJefe) ? <input className="form-control form-control-sm" value={Employee.chief.description} type="text" placeholder="Readonly input here…" readOnly/> : null}
                                         { (!cambiarJefe) ? <button onClick={changeChief} className="btn btn-link">Cambiar Jefe</button> : null }
                                         {
                                             (cambiarJefe) ?
                                         <div>
-                                            <button onClick={changeChief} className="btn btn-link">Aceptar</button>
-                                            <button onClick={changeChief} className="btn btn-link">cancelar</button>
+                                            <button onClick={setChangeChief} className="btn btn-link">Aceptar</button>
+                                            <button onClick={cancelChangeChief} className="btn btn-link">Cancelar</button>
                                         </div> : null
                                         }
                                     </div>
