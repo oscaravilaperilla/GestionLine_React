@@ -6,7 +6,7 @@ import '../App.css';
 import * as simpleActions from '../actions/simpleAction';
 import { Link } from 'react-router-dom';
 import * as userActions from '../actions/userAction';
-import LoadingBar from 'react-redux-loading-bar';
+
 
 
 class App extends Component {
@@ -43,7 +43,7 @@ class App extends Component {
                 <Link to="/about">
                     <button>Go to About</button>
                 </Link>
-                <LoadingBar />
+                
                 
             </div>
         );

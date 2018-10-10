@@ -10,6 +10,14 @@ export const searchEmployees = (name) => ({
     },
 })
 
+export const loadDepartments = () => ({
+    type: types.LOAD_DEPARTMENTS,
+    async payload() {
+        let depts = await  commonApi.loadDepartaments();
+        return depts;
+    },
+})
+
 
 
 export const selectSearchEmployee = (employee) => ({

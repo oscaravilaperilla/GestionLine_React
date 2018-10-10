@@ -8,15 +8,18 @@ import ProtectedRoute from './protectedRoute';
 import NavBarApp from '../components/Navigation/NavBar';
 import SideBar from '../components/Navigation/sideBar';
 import { connect } from 'react-redux'
+import LoadingBar from 'react-redux-loading-bar';
 
 
 const AppRoutes = ({isAllowed, ...props}) => {
     return (
         <BrowserRouter>
             <div className="App">
-
+                
                 {isAllowed ?  <NavBarApp/> : null}
+                <LoadingBar />
                 {isAllowed ?   <SideBar/> : null}
+                
                 <Switch>
                     <Route path='/login' component={Login} />
                     <ProtectedRoute isAllowed={isAllowed} path='/about' component={About} />

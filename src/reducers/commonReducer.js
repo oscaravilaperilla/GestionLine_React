@@ -5,7 +5,8 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
     searchEmployees: [],
-    selectedEmployee: null
+    selectedEmployee: null,
+    departments : []
   };
   
   export default (state = initialState, action) => {
@@ -13,6 +14,11 @@ const initialState = {
       case 'SEARCH_EMPLOYEES_FULFILLED':
         return Object.assign({}, state, {
             searchEmployees: action.payload
+        });
+      
+      case 'LOAD_DEPARTMENTS_FULFILLED':
+        return Object.assign({}, state, {
+          departments: action.payload
         });
       
       case types.SELECT_SEARCH_EMPLOYEE:

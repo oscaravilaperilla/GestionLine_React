@@ -1,15 +1,10 @@
 import React from 'react';
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Image } from 'react-bootstrap';
 import SearchEmployees from '../common/SearchEmployees';
-import { searchEmployees } from '../../actions/commonActions';
-const PersonalData = ({ Employee, user, cambiarJefe,changeChief,cancelChangeChief,setChangeChief, ...props }) => {
+import Select from 'react-select';
+
+const PersonalData = ({ Employee, user, cambiarJefe, changeChief,departments, cancelChangeChief, setChangeChief, ...props }) => {
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-2">
-                    <Image className="User-image" src={user.photoURL} />
-                </div>
                 <div className="col-10">
                     <div className="card border-right-0 border-left-0 border-top-0 ">
                         <div className="text-left bg-white">
@@ -129,6 +124,14 @@ const PersonalData = ({ Employee, user, cambiarJefe,changeChief,cancelChangeChie
                                     <label className="col-sm-4 col-form-label text-left">Fecha Ingreso</label>
                                     <div className="col-sm-8">
                                         <input className="form-control form-control-sm" value={Employee.admissionDate} type="text" placeholder="Readonly input here…" readOnly></input>
+                                        <Select
+                                            className="basic-single"
+                                            classNamePrefix="select"
+                                            name="color"
+                                            options={departments}
+                                            isSearchable={true}
+                                        />
+
                                     </div>
                                 </div>
                             </div>
@@ -136,15 +139,15 @@ const PersonalData = ({ Employee, user, cambiarJefe,changeChief,cancelChangeChie
                                 <div className="row">
                                     <label className="col-sm-4 col-form-label text-left">Jefe</label>
                                     <div className="col-sm-8">
-                                        { (cambiarJefe) ? <SearchEmployees selectedEmployee={changeChief} /> : null}
-                                        { (!cambiarJefe) ? <input className="form-control form-control-sm" value={Employee.chief.description} type="text" placeholder="Readonly input here…" readOnly/> : null}
-                                        { (!cambiarJefe) ? <button onClick={changeChief} className="btn btn-link">Cambiar Jefe</button> : null }
+                                        {(cambiarJefe) ? <SearchEmployees selectedEmployee={changeChief} /> : null}
+                                        {(!cambiarJefe) ? <input className="form-control form-control-sm" value={Employee.chief.description} type="text" placeholder="Readonly input here…" readOnly /> : null}
+                                        {(!cambiarJefe) ? <button onClick={changeChief} className="btn btn-link">Cambiar Jefe</button> : null}
                                         {
                                             (cambiarJefe) ?
-                                        <div>
-                                            <button onClick={setChangeChief} className="btn btn-link">Aceptar</button>
-                                            <button onClick={cancelChangeChief} className="btn btn-link">Cancelar</button>
-                                        </div> : null
+                                                <div>
+                                                    <button onClick={setChangeChief} className="btn btn-link">Aceptar</button>
+                                                    <button onClick={cancelChangeChief} className="btn btn-link">Cancelar</button>
+                                                </div> : null
                                         }
                                     </div>
                                 </div>
@@ -152,8 +155,6 @@ const PersonalData = ({ Employee, user, cambiarJefe,changeChief,cancelChangeChie
                         </div>
                     </div>
                 </div>
-            </div>
-        </div >
     );
 }
 
