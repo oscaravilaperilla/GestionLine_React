@@ -1,9 +1,15 @@
 import React from 'react';
 import Select from 'react-select';
 
-const LocationWork = ({ departments, ...props }) => {
+const LocationWork = ({ departments,onChangeDeptos,cities,valueCity,valueDepto,onChangeCities, ...props }) => {
+    
+ 
+
+    
+
     return (
-        <div className="col-10">
+        
+        <div className="offset-md-2">
             <div className="card border-right-0 border-left-0 border-top-0 ">
                 <div className="text-left bg-white">
                     <h5>Location Work</h5>
@@ -13,12 +19,14 @@ const LocationWork = ({ departments, ...props }) => {
                         <div className="row">
                             <label className="col-sm-4 col-form-label text-left" >Departamento</label>
                             <div className="col-sm-8">
-                            <Select
+                                <Select
                                     className="basic-single"
                                     classNamePrefix="select"
                                     name="color"
                                     options={departments}
                                     isSearchable={true}
+                                    onChange={onChangeDeptos}
+                                    value={valueDepto}
                                 />
 
                             </div>
@@ -28,12 +36,15 @@ const LocationWork = ({ departments, ...props }) => {
                         <div className="row">
                             <label className="col-sm-4 col-form-label text-left">Ciudad</label>
                             <div className="col-sm-8">
-                            <Select
+                                <Select
                                     className="basic-single"
                                     classNamePrefix="select"
                                     name="color"
-                                    options={departments}
+                                    options={cities}
+                                    onChange={onChangeCities}
                                     isSearchable={true}
+                                    value={valueCity}
+                                    
                                 />
                             </div>
                         </div>
@@ -41,6 +52,7 @@ const LocationWork = ({ departments, ...props }) => {
                 </div>
             </div>
         </div>
+
     );
 }
 

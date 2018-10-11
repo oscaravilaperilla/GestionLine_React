@@ -9,11 +9,21 @@ import Menu from './Menu';
 
 class Profile extends Component {
     constructor(props, context) {
+        
         super(props, context);
+        this.state = {
+            valueDepto : null,
+            cities: [],
+            valueCity : null
+          };
         this.state = { cambiarJefe: false }
         this.changeChief = this.changeChief.bind(this);
         this.cancelChangeChief = this.cancelChangeChief.bind(this);
         this.setChangeChief = this.setChangeChief.bind(this);
+        this.onChangeDeptos = this.onChangeDeptos.bind(this);
+        this.onChangeCities = this.onChangeCities.bind(this);
+        
+        
     }
 
 
@@ -45,6 +55,31 @@ class Profile extends Component {
         this.props.actions.cancelChangeChief();
     }
 
+    onChangeDeptos(value){
+        
+        this.setState({
+            valueDepto: value,
+            cities: value.cities,
+            valueCity:null
+        });
+    }
+
+    async onChangeCities(value){
+        await this.setStateAsync({ valueCity:value })
+        
+
+        console.log(this.state.valueDepto, this.state.valueCity);
+
+        
+    }
+
+    setStateAsync(state) {
+        return new Promise((resolve) => {
+          this.setState(state, resolve)
+        });
+    }
+
+
 
 
     render() {
@@ -52,10 +87,10 @@ class Profile extends Component {
             this.props.Employee ?
                 <div className="container-fluid">
                     <div className="row">
-                        <Menu user={this.props.user}/>
+                        <Menu user={this.props.user} />
                         <PersonalData departments={this.props.departments} setChangeChief={this.setChangeChief} cancelChangeChief={this.cancelChangeChief} changeChief={this.changeChief} cambiarJefe={this.state.cambiarJefe} Employee={this.props.Employee} user={this.props.user} />
-                        <LocationWork departments={this.props.departments}  />
                     </div>
+                    <LocationWork valueDepto={this.state.valueDepto} valueCity={this.state.valueCity} onChangeCities={this.onChangeCities} onChangeDeptos={this.onChangeDeptos} departments={this.props.departments} cities={this.state.cities} />
                 </div>
                 : null
         );
