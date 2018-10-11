@@ -15,9 +15,8 @@ const AppRoutes = ({isAllowed, ...props}) => {
     return (
         <BrowserRouter>
             <div className="App">
-                
-                {isAllowed ?  <NavBarApp/> : null}
                 <LoadingBar />
+                {isAllowed ?  <NavBarApp/> : null}
                 {isAllowed ?   <SideBar/> : null}
                 
                 <Switch>
@@ -26,7 +25,6 @@ const AppRoutes = ({isAllowed, ...props}) => {
                     <ProtectedRoute isAllowed={isAllowed} exact path='/' component={App} />
                     <ProtectedRoute isAllowed={isAllowed} path='/updatedata' component={UpdateData} />
                     <ProtectedRoute isAllowed={isAllowed} path="/" component={App} />
-                    
                 </Switch>
             </div>
         </BrowserRouter>
