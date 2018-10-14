@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as profileActions from '../../actions/profileActions';
 import * as commonActions from '../../actions/commonActions';
 import LocationWork from './LocationWork';
-import Menu from './Menu';
+
 
 class Profile extends Component {
     constructor(props, context) {
@@ -27,7 +27,7 @@ class Profile extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.departments.length > 0 && props.Employee) {
+        if (props.departments && props.departments.length > 0 && props.Employee) {
             let depto = props.departments.find((q) => {return  q.label === props.Employee.ubicacionLaboral.departamento});
           return {
             valueDepto: depto,
@@ -76,8 +76,6 @@ class Profile extends Component {
             cities: value.cities,
             valueCity:null
         });
-
-        console.log(this.props.departments.find((q) => {return  q.label === 'Cundinamarca'}));
     }
 
     async onChangeCities(value){
@@ -99,7 +97,6 @@ class Profile extends Component {
             this.props.Employee ?
                 <div className="container-fluid">
                     <div className="row">
-                        <Menu user={this.props.user} />
                         <PersonalData  departments={this.props.departments} setChangeChief={this.setChangeChief} cancelChangeChief={this.cancelChangeChief} changeChief={this.changeChief} cambiarJefe={this.state.cambiarJefe} Employee={this.props.Employee} user={this.props.user} />
                     </div>
                     <LocationWork Employee={this.props.Employee} valueDepto={this.state.valueDepto} valueCity={this.state.valueCity} onChangeCities={this.onChangeCities} onChangeDeptos={this.onChangeDeptos} departments={this.props.departments} cities={this.state.cities} />

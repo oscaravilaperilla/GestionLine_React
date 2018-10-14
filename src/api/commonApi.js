@@ -43,6 +43,12 @@ class commonApi {
                             label: t
                         }
                     } ),
+                    location: (doc.data().ubicacionLaboral) ? doc.data().ubicacionLaboral.map((t,i) => {
+                        return {
+                            value: i,
+                            label: t
+                        }
+                    } ) : null,
                 }
             }
             );

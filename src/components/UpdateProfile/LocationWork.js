@@ -9,7 +9,7 @@ const LocationWork = ({ Employee, departments, onChangeDeptos, cities, valueCity
 
     return (
 
-        <div className="offset-md-2">
+        <div>
             <div className="card border-right-0 border-left-0 border-top-0 ">
                 <div className="text-left bg-white">
                     <h5>Location Work</h5>

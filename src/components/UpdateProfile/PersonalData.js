@@ -5,9 +5,7 @@ import Select from 'react-select';
 
 const PersonalData = ({ Employee, user, cambiarJefe, changeChief, departments, cancelChangeChief, setChangeChief, ...props }) => {
     return (
-        <div className="col-10">
-
-            <div className="card border-right-0 border-left-0 border-top-0 ">
+            <div className="card border-right-0 border-left-0 border-top-0 col-12">
                 <div className="text-left bg-white">
                     <h5>Personal Info</h5>
                 </div>
@@ -147,8 +145,6 @@ const PersonalData = ({ Employee, user, cambiarJefe, changeChief, departments, c
                     </div>
                 </div>
             </div>
-        </div>
-
     );
 }
 
