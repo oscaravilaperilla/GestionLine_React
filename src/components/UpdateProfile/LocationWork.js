@@ -1,12 +1,8 @@
 import React from 'react';
 import Select from 'react-select';
+import { TextInput, ValidationForm } from 'react-bootstrap4-form-validation';
 
-const LocationWork = ({ Employee, departments, onChangeDeptos, cities, valueCity, valueDepto, onChangeCities, ...props }) => {
-
-
-
-
-
+const LocationWork = ({ Employee, EmployeeEdit, handleSubmit, handleErrorSubmit, getValidationState, departments, onChangeDeptos, locations, onChangePhone, cities, onChangeCities, ...props }) => {
     return (
 
         <div>
@@ -26,7 +22,7 @@ const LocationWork = ({ Employee, departments, onChangeDeptos, cities, valueCity
                                     options={departments}
                                     isSearchable={true}
                                     onChange={onChangeDeptos}
-                                    value={valueDepto}
+                                    value={(EmployeeEdit) ? EmployeeEdit.valueDepto : null}
                                 />
                             </div>
                         </div>
@@ -43,9 +39,46 @@ const LocationWork = ({ Employee, departments, onChangeDeptos, cities, valueCity
                                     options={cities}
                                     onChange={onChangeCities}
                                     isSearchable={true}
-                                    value={valueCity}
+                                    value={(EmployeeEdit) ? EmployeeEdit.valueCity : null}
                                 />
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="form-group col-md-6">
+                        <div className="row">
+                            <label className="col-sm-4 col-form-label text-left" >Ubicación</label>
+                            <div className="col-sm-8">
+                                <Select
+                                    className="basic-single"
+                                    classNamePrefix="select"
+                                    name="color"
+                                    options={locations}
+                                    isSearchable={true}
+                                    onChange={onChangeDeptos}
+                                    value={(EmployeeEdit) ? EmployeeEdit.valueLocation : null}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="form-group col-md-6">
+                        <div className="row">
+                            <label className="col-sm-4 col-form-label text-left">Telefono</label>
+                            <div className="col-sm-8">
+                                <ValidationForm onSubmit={handleSubmit} onErrorSubmit={handleErrorSubmit}>
+                                    <TextInput
+                                        className="form-control form-control-sm"
+                                        errorMessage="Phone Number is required"
+                                        name="phone"
+                                        type="text"
+                                        value={(EmployeeEdit) ? EmployeeEdit.phone || '' : ''}
+                                        placeholder="Enter text"
+                                        onChange={onChangePhone}
+                                        required
+                                    />
+                                </ValidationForm>
                             </div>
                         </div>
                     </div>
