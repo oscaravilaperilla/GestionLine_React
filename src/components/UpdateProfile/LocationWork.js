@@ -15,6 +15,7 @@ const LocationWork = ({ Employee, EmployeeEdit, handleSubmit, handleErrorSubmit,
                         <div className="row">
                             <label className="col-sm-4 col-form-label text-left" >Departamento</label>
                             <div className="col-sm-8">
+
                                 <Select
                                     className="basic-single"
                                     classNamePrefix="select"
@@ -67,21 +68,29 @@ const LocationWork = ({ Employee, EmployeeEdit, handleSubmit, handleErrorSubmit,
                         <div className="row">
                             <label className="col-sm-4 col-form-label text-left">Telefono</label>
                             <div className="col-sm-8">
-                                <ValidationForm onSubmit={handleSubmit} onErrorSubmit={handleErrorSubmit}>
-                                    <TextInput
-                                        className="form-control form-control-sm"
-                                        errorMessage="Phone Number is required"
-                                        name="phone"
-                                        type="text"
-                                        value={(EmployeeEdit) ? EmployeeEdit.phone || '' : ''}
-                                        placeholder="Enter text"
-                                        onChange={onChangePhone}
-                                        required
-                                    />
-                                </ValidationForm>
+                                {
+                                    (EmployeeEdit) ?
+                                        <ValidationForm onSubmit={handleSubmit} onErrorSubmit={handleErrorSubmit}>
+                                            <TextInput
+                                                className="form-control form-control-sm"
+                                                errorMessage="Phone Number is required"
+                                                name="phone"
+                                                type="text"
+                                                value={EmployeeEdit.phone}
+                                                placeholder="Enter text"
+                                                onChange={onChangePhone}
+                                                required
+                                            />
+                                        </ValidationForm>
+                                        : null
+                                }
                             </div>
                         </div>
                     </div>
+
+                </div>
+                <div>
+                    <button type="button" onClick={handleSubmit} className="btn btn-primary float-right">Guardar</button>
                 </div>
             </div>
         </div>
