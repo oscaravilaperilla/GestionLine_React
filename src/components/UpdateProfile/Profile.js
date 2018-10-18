@@ -9,6 +9,7 @@ import LocationWork from './LocationWork';
 
 
 class Profile extends Component {
+
     constructor(props, context) {
 
         super(props, context);
@@ -31,6 +32,7 @@ class Profile extends Component {
         this.onChangeDeptos = this.onChangeDeptos.bind(this);
         this.onChangeCities = this.onChangeCities.bind(this);
         this.onChangePhone = this.onChangePhone.bind(this);
+        this.onChangeLocations = this.onChangeLocations.bind(this);
         this.getValidationState = this.getValidationState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleErrorSubmit = this.handleErrorSubmit.bind(this);
@@ -42,46 +44,41 @@ class Profile extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.departments != this.props.departments &&   this.props.departments.length > 0)
-        {
+        if (prevProps.departments !== this.props.departments && this.props.departments.length > 0) {
             let depto = this.props.departments.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.departamento });
-            
+
             const employeeEdit = {
                 valueDepto: depto,
                 valueLocation: depto.location.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.ubicacionLaboral }),
                 phone: this.props.Employee.phone.phone,
                 valueCity: depto.cities.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.ciudad }),
-
             };
-            
-            this.setState({EmployeeEdit : employeeEdit});
-
-
+            this.setState({ EmployeeEdit: employeeEdit, cities: depto.cities, locations: depto.location });
         }
 
 
     }
 
-   /*  static getDerivedStateFromProps(props, state) {
-        if (props.departments && props.departments.length > 0 && props.Employee) {
-
-            let depto = props.departments.find((q) => { return q.label === props.Employee.ubicacionLaboral.departamento });
-            return {
-                EmployeeEdit: {
-                    valueDepto: depto,
-                    valueLocation: depto.location.find((q) => { return q.label === props.Employee.ubicacionLaboral.ubicacionLaboral }),
-                    valueCity:  depto.cities.find((q) => { return q.label === props.Employee.ubicacionLaboral.ciudad }),
-                    phone : (state.EmployeeEdit) ? state.EmployeeEdit.phone : ''
-                },
-                cities: depto.cities,
-                locations: depto.location,
-
-            }
-        }
-        return state;
-
-    }
- */
+    /*  static getDerivedStateFromProps(props, state) {
+         if (props.departments && props.departments.length > 0 && props.Employee) {
+ 
+             let depto = props.departments.find((q) => { return q.label === props.Employee.ubicacionLaboral.departamento });
+             return {
+                 EmployeeEdit: {
+                     valueDepto: depto,
+                     valueLocation: depto.location.find((q) => { return q.label === props.Employee.ubicacionLaboral.ubicacionLaboral }),
+                     valueCity:  depto.cities.find((q) => { return q.label === props.Employee.ubicacionLaboral.ciudad }),
+                     phone : (state.EmployeeEdit) ? state.EmployeeEdit.phone : ''
+                 },
+                 cities: depto.cities,
+                 locations: depto.location,
+ 
+             }
+         }
+         return state;
+ 
+     }
+  */
 
 
 
@@ -107,8 +104,9 @@ class Profile extends Component {
 
     handleSubmit = (e, formData, inputs) => {
         e.preventDefault();
-        console.log(this.state.EmployeeEdit, this.state.EmployeeEdit.phone);
-        //    alert(JSON.stringify(formData, null, 2));
+        if (this.state.EmployeeEdit && this.state.EmployeeEdit.valueCity && this.state.EmployeeEdit.valueDepto && this.state.EmployeeEdit.valueLocation && this.state.EmployeeEdit.phone)
+            console.log(this.state.EmployeeEdit, this.state.EmployeeEdit.phone);
+
     }
 
     handleErrorSubmit = (e, formData, errorInputs) => {
@@ -124,11 +122,11 @@ class Profile extends Component {
     }
 
     onChangeDeptos(value) {
-        const newEmployeeEdit = update(this.state.EmployeeEdit, { $merge: { valueCity: null, valueLocation:null, valueDepto: value } });
+        const newEmployeeEdit = update(this.state.EmployeeEdit, { $merge: { valueCity: null, valueLocation: null, valueDepto: value } });
         this.setState({
             EmployeeEdit: newEmployeeEdit,
             cities: value.cities,
-            
+
         });
     }
 
@@ -147,6 +145,17 @@ class Profile extends Component {
 
     async onChangeCities(value) {
         const newEmployeeEdit = update(this.state.EmployeeEdit, { $merge: { valueCity: value } });
+        this.setState({
+            EmployeeEdit: newEmployeeEdit,
+        }
+        );
+
+        /* await this.setStateAsync({ valueCity: value })
+        console.log(this.state.valueDepto, this.state.valueCity); */
+    }
+
+    onChangeLocations(value) {
+        const newEmployeeEdit = update(this.state.EmployeeEdit, { $merge: { valueLocation: value } });
         this.setState({
             EmployeeEdit: newEmployeeEdit,
         }
@@ -180,7 +189,7 @@ class Profile extends Component {
                     <div className="row">
                         <PersonalData departments={this.props.departments} setChangeChief={this.setChangeChief} cancelChangeChief={this.cancelChangeChief} changeChief={this.changeChief} cambiarJefe={this.state.cambiarJefe} Employee={this.props.Employee} user={this.props.user} />
                     </div>
-                    <LocationWork handleSubmit={this.handleSubmit} EmployeeEdit={this.state.EmployeeEdit} getValidationState={this.getValidationState} onChangePhone={this.onChangePhone} Employee={this.props.Employee} onChangeCities={this.onChangeCities} onChangeDeptos={this.onChangeDeptos} departments={this.props.departments} cities={this.state.cities} locations={this.state.locations} />
+                    <LocationWork onChangeLocations={this.onChangeLocations} handleSubmit={this.handleSubmit} EmployeeEdit={this.state.EmployeeEdit} getValidationState={this.getValidationState} onChangePhone={this.onChangePhone} Employee={this.props.Employee} onChangeCities={this.onChangeCities} onChangeDeptos={this.onChangeDeptos} departments={this.props.departments} cities={this.state.cities} locations={this.state.locations} />
                 </div>
                 : null
         );
