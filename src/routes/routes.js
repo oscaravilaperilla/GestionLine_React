@@ -9,16 +9,25 @@ import NavBarApp from '../components/Navigation/NavBar';
 import SideBar from '../components/Navigation/sideBar';
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading-bar';
+import ReduxToastr from 'react-redux-toastr';
 
 
-const AppRoutes = ({isAllowed, ...props}) => {
+const AppRoutes = ({ isAllowed, ...props }) => {
     return (
         <BrowserRouter>
             <div className="App">
+                <ReduxToastr
+                    timeOut={4000}
+                    newestOnTop={false}
+                    preventDuplicates
+                    position="top-right"
+                    transitionIn="fadeIn"
+                    transitionOut="fadeOut"
+                    closeOnToastrClick />
                 <LoadingBar />
-                {isAllowed ?  <NavBarApp/> : null}
-                {isAllowed ?   <SideBar/> : null}
-                
+                {isAllowed ? <NavBarApp /> : null}
+                {isAllowed ? <SideBar /> : null}
+
                 <Switch>
                     <Route path='/login' component={Login} />
                     <ProtectedRoute isAllowed={isAllowed} path='/about' component={About} />

@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import moment from 'moment'
 
 class UserApi {
-    
+
     static async signInWithEmailAndPassword(email, pass) {
         try {
             let userProperties = await firebase.auth().signInWithEmailAndPassword(email, pass);
@@ -26,14 +26,16 @@ class UserApi {
         }
     }
 
-    static async updateProfile(id,profile) {
+    static async updateProfile(id, profile, EmployeeEdit) {
         try {
             let db = firebase.firestore();
-            const settings = {timestampsInSnapshots: true};
+            const settings = { timestampsInSnapshots: true };
             db.settings(settings);
             let doc = db.collection("employees").doc(id);
-
-            await doc.update( { ['chief.description'] : profile.fullName, ['chief.id'] : profile.id } )
+            if (profile)
+                await doc.update({ ['chief.description']: profile.fullName, ['chief.id']: profile.id })
+            if (EmployeeEdit)
+                await doc.update({ ['phone.phone']: EmployeeEdit.phone, ['ubicacionLaboral.ciudad']: EmployeeEdit.valueCity.label, ['ubicacionLaboral.departamento']: EmployeeEdit.valueDepto.label , ['ubicacionLaboral.ubicacionLaboral']: EmployeeEdit.valueLocation.label })
             return this.queryEmployee(id);
         }
         catch (e) {
@@ -42,14 +44,14 @@ class UserApi {
     }
 
 
-    
-    static signOut(){
+
+    static signOut() {
         firebase.auth().signOut();
     }
 
-     static async queryEmployee(uid){
+    static async queryEmployee(uid) {
         let db = firebase.firestore();
-        const settings = {timestampsInSnapshots: true};
+        const settings = { timestampsInSnapshots: true };
         db.settings(settings);
         let employeesref = db.collection("employees").doc(uid);
         let doc = await employeesref.get();
@@ -57,7 +59,7 @@ class UserApi {
         //console.log(t.parent);
         //console.log(t.data());
         console.log(doc.id);
-        let t =  doc.data();
+        let t = doc.data();
         t.id = doc.id;
         t.position.dateLastPosition = moment(t.position.dateLastPosition.toDate()).format('DD/MM/YYYY');
         t.admissionDate = moment(t.admissionDate.toDate()).format('DD/MM/YYYY');

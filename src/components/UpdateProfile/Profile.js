@@ -49,7 +49,7 @@ class Profile extends Component {
 
             const employeeEdit = {
                 valueDepto: depto,
-                valueLocation: depto.location.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.ubicacionLaboral }),
+                valueLocation: (depto.location) ?  depto.location.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.ubicacionLaboral }) : null,
                 phone: this.props.Employee.phone.phone,
                 valueCity: depto.cities.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.ciudad }),
             };
@@ -104,8 +104,10 @@ class Profile extends Component {
 
     handleSubmit = (e, formData, inputs) => {
         e.preventDefault();
-        if (this.state.EmployeeEdit && this.state.EmployeeEdit.valueCity && this.state.EmployeeEdit.valueDepto && this.state.EmployeeEdit.valueLocation && this.state.EmployeeEdit.phone)
+        if (this.state.EmployeeEdit && this.state.EmployeeEdit.valueCity && this.state.EmployeeEdit.valueDepto && this.state.EmployeeEdit.valueLocation && this.state.EmployeeEdit.phone){
+            this.props.actions.changeChief(this.props.Employee.id, this.props.newChief,this.state.EmployeeEdit);
             console.log(this.state.EmployeeEdit, this.state.EmployeeEdit.phone);
+        }
 
     }
 
