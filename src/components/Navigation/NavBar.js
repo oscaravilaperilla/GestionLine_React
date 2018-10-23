@@ -1,7 +1,5 @@
 import React from 'react';
-import NavItem from './NavItem';
-import NavDropdown from './NavDropdown';
-import {PageHeader} from 'react-bootstrap';
+import LoadingBar from 'react-redux-loading-bar';
 
 class NavBar extends React.Component {
   render() {
@@ -9,9 +7,12 @@ class NavBar extends React.Component {
 
 
 
-       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <span className="navbar-brand" >Gestion Line</span>    
-      </nav> 
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div>
+          <LoadingBar />
+          <span className="navbar-brand" >Gestion Line</span>
+        </div>
+      </nav>
     )
   }
 }

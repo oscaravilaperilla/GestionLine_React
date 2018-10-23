@@ -1,7 +1,5 @@
 import React from 'react';
-import { Image } from 'react-bootstrap';
 import SearchEmployees from '../common/SearchEmployees';
-import Select from 'react-select';
 
 const PersonalData = ({ Employee, user, cambiarJefe, changeChief, departments, cancelChangeChief, setChangeChief, ...props }) => {
     return (

@@ -8,14 +8,15 @@ import ProtectedRoute from './protectedRoute';
 import NavBarApp from '../components/Navigation/NavBar';
 import SideBar from '../components/Navigation/sideBar';
 import { connect } from 'react-redux'
-import LoadingBar from 'react-redux-loading-bar';
 import ReduxToastr from 'react-redux-toastr';
 
 
 const AppRoutes = ({ isAllowed, ...props }) => {
     return (
         <BrowserRouter>
+            
             <div className="App">
+                
                 <ReduxToastr
                     timeOut={4000}
                     newestOnTop={false}
@@ -24,8 +25,9 @@ const AppRoutes = ({ isAllowed, ...props }) => {
                     transitionIn="fadeIn"
                     transitionOut="fadeOut"
                     closeOnToastrClick />
-                <LoadingBar />
+                
                 {isAllowed ? <NavBarApp /> : null}
+                
                 {isAllowed ? <SideBar /> : null}
 
                 <Switch>
@@ -35,7 +37,9 @@ const AppRoutes = ({ isAllowed, ...props }) => {
                     <ProtectedRoute isAllowed={isAllowed} path='/updatedata' component={UpdateData} />
                     <ProtectedRoute isAllowed={isAllowed} path="/" component={App} />
                 </Switch>
+                
             </div>
+            
         </BrowserRouter>
     )
 }

@@ -13,19 +13,36 @@ class Profile extends Component {
     constructor(props, context) {
 
         super(props, context);
-        this.state = {
-            EmployeeEdit: {
-                valueDepto: null,
-                valueLocation: null,
-                phone: '',
-                valueCity: null
+        if (props.departments.length > 0 && props.Employee) {
+            let depto = this.props.departments.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.departamento });
+            this.state = {
+                EmployeeEdit: {
+                    valueDepto: depto,
+                    valueLocation: (depto.location) ? depto.location.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.ubicacionLaboral }) : null,
+                    phone: props.Employee.phone.phone,
+                    valueCity: depto.cities.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.ciudad }),
 
-            },
-            cities: [],
-            locations: [],
+                },
+                cities: depto.cities,
+                locations: depto.location,
+                cambiarJefe: false 
+            };
 
-        };
-        this.state = { cambiarJefe: false }
+        }
+        else {
+            this.state = {
+                EmployeeEdit: {
+                    valueDepto: null,
+                    valueLocation: null,
+                    phone: '',
+                    valueCity: null
+
+                },
+                cities: [],
+                locations: [],
+                cambiarJefe: false 
+            };
+        }
         this.changeChief = this.changeChief.bind(this);
         this.cancelChangeChief = this.cancelChangeChief.bind(this);
         this.setChangeChief = this.setChangeChief.bind(this);
@@ -49,7 +66,7 @@ class Profile extends Component {
 
             const employeeEdit = {
                 valueDepto: depto,
-                valueLocation: (depto.location) ?  depto.location.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.ubicacionLaboral }) : null,
+                valueLocation: (depto.location) ? depto.location.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.ubicacionLaboral }) : null,
                 phone: this.props.Employee.phone.phone,
                 valueCity: depto.cities.find((q) => { return q.label === this.props.Employee.ubicacionLaboral.ciudad }),
             };
@@ -90,7 +107,8 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        this.props.commonActions.loadDepartments(this.props.user.uid);
+        if (this.props.departments.length <= 0)
+            this.props.commonActions.loadDepartments(this.props.user.uid);
     }
 
 
@@ -104,8 +122,8 @@ class Profile extends Component {
 
     handleSubmit = (e, formData, inputs) => {
         e.preventDefault();
-        if (this.state.EmployeeEdit && this.state.EmployeeEdit.valueCity && this.state.EmployeeEdit.valueDepto && this.state.EmployeeEdit.valueLocation && this.state.EmployeeEdit.phone){
-            this.props.actions.changeChief(this.props.Employee.id, this.props.newChief,this.state.EmployeeEdit);
+        if (this.state.EmployeeEdit && this.state.EmployeeEdit.valueCity && this.state.EmployeeEdit.valueDepto && this.state.EmployeeEdit.valueLocation && this.state.EmployeeEdit.phone) {
+            this.props.actions.changeChief(this.props.Employee.id, this.props.newChief, this.state.EmployeeEdit);
             console.log(this.state.EmployeeEdit, this.state.EmployeeEdit.phone);
         }
 
@@ -128,6 +146,7 @@ class Profile extends Component {
         this.setState({
             EmployeeEdit: newEmployeeEdit,
             cities: value.cities,
+            locations: value.location
 
         });
     }

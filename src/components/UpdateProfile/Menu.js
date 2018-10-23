@@ -10,8 +10,8 @@ export const Menu = ({ user, ...props }) => {
             <Link to="/updatedata">
                 <button className="btn btn-link float-left btn-sm">Información Laboral</button>
             </Link>
-            <Link to="/updatedata/about">
-                <button className="btn btn-link float-left btn-sm">Información Personal</button>
+            <Link to="/updatedata/studies">
+                <button className="btn btn-link float-left btn-sm">Estudios Realizados</button>
             </Link>
         </div>
 

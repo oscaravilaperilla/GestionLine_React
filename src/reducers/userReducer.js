@@ -1,10 +1,9 @@
-/*
- src/reducers/userReducer.js
-*/
+import * as types from '../actions/actionTypes';
 
 const initialState = {
   currentUser: null,
   employee: null,
+  studies: []
 };
 
 export default (state = initialState, action) => {
@@ -21,10 +20,16 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         employee: action.payload
       });
-      case 'CHANGE_CHIEF_FULFILLED':
+    case 'CHANGE_CHIEF_FULFILLED':
       return Object.assign({}, state, {
         employee: action.payload
       });
+    case types.LOAD_STUDIES + '_FULFILLED':
+      return Object.assign({}, state, {
+        studies: action.payload
+      });
+
+
 
 
     default:

@@ -15,7 +15,7 @@ export const signInWithEmailAndPassword = (email, pass) => ({
 export const signOut = () => ({
     type: types.LOGOUT_USER,
     async payload() {
-        let user = await  UserApi.signOut();
+        await  UserApi.signOut();
         verifyAuth();
     },
 })

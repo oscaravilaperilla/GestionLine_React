@@ -1,14 +1,13 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import * as userActions from '../../actions/userAction';
 import Profile from './Profile';
 import Menu from './Menu';
-import About from '../../containers/About'
+import Studies from '../../containers/Studies'
 
 class UpdateData extends Component {
-    state = {}
     render() {
         return (
             this.props.Employee ?
@@ -21,8 +20,8 @@ class UpdateData extends Component {
                             <Switch>
                                 {/* para pasar propiedades 
                                 <Route exact path='/updatedata'  render={(props) => <Profile {...props} Employee={this.props.Employee} user={this.props.user} />} />*/}
-                                <Route exact path='/updatedata'  component={Profile} />
-                                <Route  path='/updatedata/about' component={About} />
+                                <Route exact path='/updatedata' component={Profile} />
+                                <Route path='/updatedata/studies' component={Studies} />
                             </Switch>
                         </div>
                     </div>

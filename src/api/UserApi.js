@@ -15,8 +15,7 @@ class UserApi {
     static async updateUser() {
         try {
             let user = firebase.auth().currentUser;
-
-            let q = user.updateProfile({
+            user.updateProfile({
                 displayName: "Oscar Javier Avila",
                 photoURL: "https://firebasestorage.googleapis.com/v0/b/employees-86ecc.appspot.com/o/IMG_20180511_221902.jpg?alt=media&token=bdc06eee-f905-4b61-a288-79444671477b"
             });
@@ -33,9 +32,9 @@ class UserApi {
             db.settings(settings);
             let doc = db.collection("employees").doc(id);
             if (profile)
-                await doc.update({ ['chief.description']: profile.fullName, ['chief.id']: profile.id })
+                await doc.update({ 'chief.description': profile.fullName, 'chief.id': profile.id })
             if (EmployeeEdit)
-                await doc.update({ ['phone.phone']: EmployeeEdit.phone, ['ubicacionLaboral.ciudad']: EmployeeEdit.valueCity.label, ['ubicacionLaboral.departamento']: EmployeeEdit.valueDepto.label , ['ubicacionLaboral.ubicacionLaboral']: EmployeeEdit.valueLocation.label })
+                await doc.update({ 'phone.phone': EmployeeEdit.phone, 'ubicacionLaboral.ciudad': EmployeeEdit.valueCity.label, 'ubicacionLaboral.departamento': EmployeeEdit.valueDepto.label , 'ubicacionLaboral.ubicacionLaboral': EmployeeEdit.valueLocation.label })
             return this.queryEmployee(id);
         }
         catch (e) {
@@ -58,7 +57,6 @@ class UserApi {
         //let t = await doc.data().estructuraRef.get();
         //console.log(t.parent);
         //console.log(t.data());
-        console.log(doc.id);
         let t = doc.data();
         t.id = doc.id;
         t.position.dateLastPosition = moment(t.position.dateLastPosition.toDate()).format('DD/MM/YYYY');
