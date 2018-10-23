@@ -14,9 +14,9 @@ import ReduxToastr from 'react-redux-toastr';
 const AppRoutes = ({ isAllowed, ...props }) => {
     return (
         <BrowserRouter>
-            
+
             <div className="App">
-                
+
                 <ReduxToastr
                     timeOut={4000}
                     newestOnTop={false}
@@ -25,9 +25,9 @@ const AppRoutes = ({ isAllowed, ...props }) => {
                     transitionIn="fadeIn"
                     transitionOut="fadeOut"
                     closeOnToastrClick />
-                
-                {isAllowed ? <NavBarApp /> : null}
-                
+{/* className="sticky-top" */}
+                {isAllowed ? <div ><NavBarApp /> </div> : null}
+
                 {isAllowed ? <SideBar /> : null}
 
                 <Switch>
@@ -37,9 +37,9 @@ const AppRoutes = ({ isAllowed, ...props }) => {
                     <ProtectedRoute isAllowed={isAllowed} path='/updatedata' component={UpdateData} />
                     <ProtectedRoute isAllowed={isAllowed} path="/" component={App} />
                 </Switch>
-                
+
             </div>
-            
+
         </BrowserRouter>
     )
 }
