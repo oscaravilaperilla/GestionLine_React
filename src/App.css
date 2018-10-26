@@ -85,6 +85,16 @@ body {
 }
 
 
+.modal-button {
+  width: 100px !important;
+}
+
+.to-left{
+  
+  display: flex;
+  align-items: center;
+}
+
 
 .bm-burger-bars {
   background: #373a47;

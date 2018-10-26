@@ -18,6 +18,35 @@ export const loadDepartments = () => ({
     },
 })
 
+export const loadLevelsStudies = () => ({
+    type: types.LOAD_LEVELS_STUDIES,
+    async payload() {
+        let levels = await  commonApi.loadLevelsStudy();
+        return levels;
+    },
+})
+
+
+export const loadCareers = () => ({
+    type: types.LOAD_CAREERS,
+    async payload() {
+        let levels = await  commonApi.loadCareers();
+        return levels;
+    },
+})
+
+export const loadUniversities = () => ({
+    type: types.LOAD_UNIVERSITIES,
+    async payload() {
+        let levels = await  commonApi.loadUniversities();
+        return levels;
+    },
+})
+
+
+
+
+
 
 
 export const selectSearchEmployee = (employee) => ({

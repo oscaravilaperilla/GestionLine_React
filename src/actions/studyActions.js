@@ -9,6 +9,14 @@ export function addStudy(stydy, userId) {
     }
 };
 
+export function deleteStudy(id,userId) {
+    return function (dispatch) {
+        studyApi.deleteStudy(id).then(() => {
+            dispatch(LoadStudies(userId))
+        })
+    }
+};
+
 export function LoadedStudies(studies) {
     return {
         type: types.LOAD_STUDIES + '_FULFILLED',

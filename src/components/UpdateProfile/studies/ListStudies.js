@@ -1,7 +1,7 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 
-const ListStudies = ({ studies,editStudy, ...props }) => {
+const ListStudies = ({ studies,editStudy,deleteStudy, ...props }) => {
 
     const columns = [
         {
@@ -41,13 +41,13 @@ const ListStudies = ({ studies,editStudy, ...props }) => {
 
     function buttonFormatterEdit(cell, row) {
         return (
-            <button  onClick={(e) => editStudy(e,row)} trade={row} className="btn btn-link">Edit</button>
+            <button  onClick={(e) => editStudy(e,row.id)}  className="btn btn-link btn-sm">Edit</button>
         );
     }
 
     function buttonFormatterDelete(cell, row) {
         return (
-            <button className="btn btn-link">Delete</button>
+            <button onClick={(e) => deleteStudy(e,row.id)}  className="btn btn-link btn-sm">Delete</button>
         );
     }
 

@@ -57,8 +57,66 @@ class commonApi {
         }
     }
 
+    static async loadLevelsStudy() {
+        try {
+            let db = firebase.firestore();
+            const settings = { timestampsInSnapshots: true };
+            db.settings(settings);
+            let ref = db.collection("studyLevel");
+            let levels = await ref.get();
+            return levels.docs.map((doc, i) => {
+                return  {
+                    value: doc.id,
+                    label: doc.data().description,
+                    type: doc.data().type
+                }
+            }
+            );
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
 
+    static async loadCareers() {
+        try {
+            let db = firebase.firestore();
+            const settings = { timestampsInSnapshots: true };
+            db.settings(settings);
+            let ref = db.collection("career");
+            let levels = await ref.get();
+            return levels.docs.map((doc, i) => {
+                return  {
+                    value: doc.id,
+                    label: doc.data().description
+                }
+            }
+            );
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
 
+    static async loadUniversities() {
+        try {
+            let db = firebase.firestore();
+            const settings = { timestampsInSnapshots: true };
+            db.settings(settings);
+            let ref = db.collection("universities");
+            let levels = await ref.get();
+            return levels.docs.map((doc, i) => {
+                return  {
+                    value: doc.id,
+                    label: doc.data().description
+                }
+            }
+            );
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
 }
 
 export default commonApi;
