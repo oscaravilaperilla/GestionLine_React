@@ -1,9 +1,11 @@
 import studyApi from '../api/studyApi';
 import * as types from './actionTypes';
+import {toastr} from 'react-redux-toastr';
 
 export function addStudy(stydy, userId) {
     return function (dispatch) {
         studyApi.addStudy(stydy).then(() => {
+            toastr.success('Success', 'Save Sucessfully');
             dispatch(LoadStudies(userId))
         })
     }
@@ -12,6 +14,7 @@ export function addStudy(stydy, userId) {
 export function deleteStudy(id,userId) {
     return function (dispatch) {
         studyApi.deleteStudy(id).then(() => {
+            toastr.success('Success', 'Delete Sucessfully');
             dispatch(LoadStudies(userId))
         })
     }

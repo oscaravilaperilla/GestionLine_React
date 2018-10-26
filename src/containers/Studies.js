@@ -7,7 +7,7 @@ import update from 'immutability-helper';
 import ListStudies from '../components/UpdateProfile/studies/ListStudies';
 import AddStudy from '../components/UpdateProfile/studies/AddStudy';
 import { StudyItem } from '../models/updateData/studies/study';
-import ConfirmModal from 'react-bootstrap4-modal';
+import {toastr} from 'react-redux-toastr';
 
 class Studies extends Component {
     constructor(props) {
@@ -141,7 +141,14 @@ class Studies extends Component {
 
     deleteStudy(e, id) {
         e.preventDefault();
-        this.props.actions.deleteStudy(id,this.props.user.uid)
+
+        const toastrConfirmOptions = {
+            onOk: () => this.props.actions.deleteStudy(id,this.props.user.uid),
+            onCancel: () => console.log('CANCEL: clicked')
+          };
+          toastr.confirm('Are you sure about that!', toastrConfirmOptions);
+          
+        
     }
 }
 
