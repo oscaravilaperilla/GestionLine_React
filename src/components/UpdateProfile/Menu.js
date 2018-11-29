@@ -13,6 +13,9 @@ export const Menu = ({ user, ...props }) => {
             <Link to="/updatedata/studies">
                 <button className="btn btn-link float-left btn-sm">Estudios Realizados</button>
             </Link>
+            <Link to="/updatedata/family">
+                <button className="btn btn-link float-left btn-sm">Family</button>
+            </Link>
         </div>
 
     )

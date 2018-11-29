@@ -6,6 +6,7 @@ import * as userActions from '../../actions/userAction';
 import Profile from './Profile';
 import Menu from './Menu';
 import Studies from '../../containers/Studies'
+import Family from '../../containers/Family'
 
 class UpdateData extends Component {
     render() {
@@ -22,6 +23,7 @@ class UpdateData extends Component {
                                 <Route exact path='/updatedata'  render={(props) => <Profile {...props} Employee={this.props.Employee} user={this.props.user} />} />*/}
                                 <Route exact path='/updatedata' component={Profile} />
                                 <Route path='/updatedata/studies' component={Studies} />
+                                <Route path='/updatedata/family' component={Family} />
                             </Switch>
                         </div>
                     </div>
