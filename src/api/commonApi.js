@@ -5,8 +5,8 @@ class commonApi {
     static async searchEmployyesByName(name) {
         try {
             let db = firebase.firestore();
-            const settings = { timestampsInSnapshots: true };
-            db.settings(settings);
+//             const settings = { timestampsInSnapshots: true };
+//             db.settings(settings);
             let employeesByName = db.collection("employees");
             let employees = await employeesByName.get();
             let x = 1;
@@ -28,8 +28,8 @@ class commonApi {
     static async loadDepartaments() {
         try {
             let db = firebase.firestore();
-            const settings = { timestampsInSnapshots: true };
-            db.settings(settings);
+//             const settings = { timestampsInSnapshots: true };
+//             db.settings(settings);
             let deptosref = db.collection("Departamentos");
             let deptos = await deptosref.get();
             return deptos.docs.map((doc, i) => {
@@ -60,8 +60,8 @@ class commonApi {
     static async loadLevelsStudy() {
         try {
             let db = firebase.firestore();
-            const settings = { timestampsInSnapshots: true };
-            db.settings(settings);
+//             const settings = { timestampsInSnapshots: true };
+//             db.settings(settings);
             let ref = db.collection("studyLevel");
             let levels = await ref.get();
             return levels.docs.map((doc, i) => {
@@ -81,8 +81,8 @@ class commonApi {
     static async loadCareers() {
         try {
             let db = firebase.firestore();
-            const settings = { timestampsInSnapshots: true };
-            db.settings(settings);
+//             const settings = { timestampsInSnapshots: true };
+//             db.settings(settings);
             let ref = db.collection("career");
             let levels = await ref.get();
             return levels.docs.map((doc, i) => {
@@ -101,8 +101,8 @@ class commonApi {
     static async loadUniversities() {
         try {
             let db = firebase.firestore();
-            const settings = { timestampsInSnapshots: true };
-            db.settings(settings);
+//             const settings = { timestampsInSnapshots: true };
+//             db.settings(settings);
             let ref = db.collection("universities");
             let levels = await ref.get();
             return levels.docs.map((doc, i) => {
